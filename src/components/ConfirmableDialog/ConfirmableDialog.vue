@@ -2,8 +2,8 @@
   <modal-dialog
     v-model="isVisible"
     :title="title"
-    :class="$style.dialogMessages"
     :close-by-click-outside="false"
+    class="dialog-confirmation"
     hide-close-button
     @keydown.enter.prevent="confirm"
   >
@@ -87,8 +87,3 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" module>
-.dialogMessages {
-  --dialog-width: fit-content;
-}
-</style>
