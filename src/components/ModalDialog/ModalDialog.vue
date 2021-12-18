@@ -39,7 +39,10 @@ export default defineComponent({
               <slot v-bind="{ handleClose }" />
             </template>
             <template v-else>
-              <div class="dialog-header">
+              <div
+                v-if="title || $slots.title"
+                class="dialog-header"
+              >
                 <slot
                   name="title"
                   v-bind="{ handleClose }"
@@ -53,7 +56,9 @@ export default defineComponent({
                   >&times;</button>
                 </slot>
               </div>
-              <slot v-bind="{ handleClose }" />
+              <div class="dialog-content">
+                <slot v-bind="{ handleClose }" />
+              </div>
               <template v-if="$slots.actions">
                 <div class="dialog-actions">
                   <slot
@@ -141,13 +146,13 @@ export default defineComponent({
   border: var(--dialog-border, 1px solid #000);
   outline: none;
 
-  overflow-x: hidden;
-  overflow-y: scroll;
-  will-change: scroll-position;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .dialog-header {
-  margin-bottom: 0.5rem;
+  flex: 0 0 auto;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -178,8 +183,15 @@ export default defineComponent({
   cursor: pointer;
 }
 
+.dialog-content {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  will-change: scroll-position;
+}
+
 .dialog-actions {
-  margin-top: 0.5rem;
+  flex: 0 0 auto;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

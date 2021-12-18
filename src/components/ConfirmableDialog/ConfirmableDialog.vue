@@ -91,7 +91,4 @@ export default defineComponent({
 .dialogMessages {
   --dialog-width: fit-content;
 }
-:global(.dialog-actions) {
-  margin-top: 0.5rem;
-}
 </style>
