@@ -54,6 +54,7 @@ export type DialogProps = ExtractPropTypes<typeof dialogProps>;
 export const useDialog = (props: DialogProps, { emit }: SetupContext<DialogEmits>) => {
   const dialog = ref<HTMLElement>();
   const isVisible = ref(false);
+  const telportTarget = computed(() => (props.appendTo === false ? undefined : props.appendTo));
   const isTelportDiabled = computed(() => props.appendTo === false);
 
   function afterEnter() {
@@ -134,6 +135,7 @@ export const useDialog = (props: DialogProps, { emit }: SetupContext<DialogEmits
     onEscapePressed,
     dialog,
     isVisible,
+    telportTarget,
     isTelportDiabled,
   };
 };

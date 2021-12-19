@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 <template>
   <teleport
-    :to="appendTo"
+    :to="telportTarget"
     :disabled="isTelportDiabled"
   >
     <transition
