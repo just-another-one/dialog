@@ -11,7 +11,6 @@ export default defineConfig({
     lib: {
       entry: resolvePath('./src/index.ts'),
       name: 'dialog',
-      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
