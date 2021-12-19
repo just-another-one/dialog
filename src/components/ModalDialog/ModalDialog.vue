@@ -25,10 +25,10 @@ export default defineComponent({
     >
       <div
         v-show="isVisible"
-        class="overlay"
+        class="dialog-overlay"
         @click="onClickOutside"
       >
-        <div class="dialog-overlay">
+        <div class="dialog-wrapper">
           <div
             ref="dialog"
             :class="['dialog', $attrs.class]"

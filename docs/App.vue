@@ -8,9 +8,9 @@ import NestedDialog from './NestedDialog.vue';
 
 setupConfirmableDialog({
   actions: ({ cancellable, cancel, confirm }) => {
-    const confirmButton = h('button', { onClick: confirm }, 'Accept');
+    const confirmButton = h('button', { class: 'btn btn-primary', onClick: confirm }, 'Accept');
     if (cancellable) {
-      const cancelButton = h('button', { onClick: cancel }, 'Reject');
+      const cancelButton = h('button', { class: 'btn btn-cancel', onClick: cancel }, 'Reject');
       return [cancelButton, confirmButton];
     }
 
@@ -89,4 +89,83 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: 'liga', 'kern';
 }
+
+// body {
+//   font-size: 14px;
+//   line-height: 1.33333;
+//   font-family: Source Sans Pro, Trebuchet MS, sans-serif;
+// }
+
+// .btn {
+//   padding: 0.4rem 0.8rem;
+//   font-size: 0.85rem;
+//   line-height: 1.33333;
+
+//   margin-bottom: 0;
+//   font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
+//   font-weight: 600;
+//   text-align: center;
+//   text-transform: uppercase;
+//   letter-spacing: 0.015em;
+//   word-spacing: 0.05em;
+//   vertical-align: middle;
+//   touch-action: manipulation;
+
+//   border: none;
+//   border-radius: 3px;
+//   white-space: nowrap;
+// }
+
+// .btn-default {
+//   background: #96b9c9;
+//   color: #fff;
+
+//   &:hover {
+//     background: #74a3b8;
+//   }
+// }
+
+// .btn-primary {
+//   background: #3f65ea;
+//   color: #fff;
+
+//   &:hover {
+//     background: #1844de;
+//   }
+// }
+
+// :root {
+//   --dialog-animation: 0;
+//   --dialog-border: none;
+//   --dialog-border-radius: 5px;
+//   --dialog-box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 38%);
+//   --dialog-overlay-bg-color: rgba(19, 50, 75, 0.6);
+//   --dialog-padding: 1.33333em;
+//   --dialog-width: 520px;
+//   --dialog-confirmation-width: 520px;
+// }
+
+// .dialog {
+//   .dialog-close {
+//     background: #13324b;
+//     color: #fff;
+//     border-radius: 50%;
+//     position: absolute;
+//     font-size: 18px;
+//     top: -9px;
+//     left: -9px;
+//   }
+//   .dialog-header {
+//     padding: calc(var(--dialog-padding) / 2) var(--dialog-padding);
+//     border-bottom: 1px solid #dbe3eb;
+//     .dialog-title {
+//       font-size: 1.4rem;
+//       font-weight: 600;
+//     }
+//   }
+//   .dialog-actions {
+//     border-top: 1px solid #dbe3eb;
+//     padding: calc(var(--dialog-padding) / 2) var(--dialog-padding);
+//   }
+// }
 </style>

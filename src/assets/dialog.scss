@@ -1,13 +1,12 @@
-@mixin overlay {
+@mixin fullscreen-position {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: auto;
 }
 
-@keyframes modal-dialog-transition {
+@keyframes dialog-overlay-transition {
   0% {
     opacity: 0;
   }
@@ -16,7 +15,7 @@
   }
 }
 
-@keyframes dialog-transition {
+@keyframes dialog-wrapper-transition {
   0% {
     transform: translate3d(0, -20px, 0);
     opacity: 0;
@@ -28,29 +27,29 @@
 }
 
 .dialog-transition-enter-active {
-  animation: var(--modal-dialog-animation, modal-dialog-transition 0.3s ease-in-out);
-  .dialog-overlay {
-    animation: var(--dialog-animation, dialog-transition 0.3s ease-in-out);
+  animation: var(--modal-dialog-animation, dialog-overlay-transition 0.3s ease-in-out);
+  .dialog-wrapper {
+    animation: var(--dialog-animation, dialog-wrapper-transition 0.3s ease-in-out);
   }
 }
 
 .dialog-transition-leave-active {
-  animation: var(--modal-dialog-animation, modal-dialog-transition 0.3s ease-in-out);
+  animation: var(--modal-dialog-animation, dialog-overlay-transition 0.3s ease-in-out);
   animation-direction: reverse;
-  .dialog-overlay {
-    animation: var(--dialog-animation, dialog-transition 0.3s ease-in-out);
+  .dialog-wrapper {
+    animation: var(--dialog-animation, dialog-wrapper-transition 0.3s ease-in-out);
     animation-direction: reverse;
   }
 }
 
-.overlay {
-  @include overlay;
+.dialog-overlay {
+  @include fullscreen-position;
   z-index: var(--dialog-z-index, 1024);
   background: var(--dialog-overlay-bg-color, #00000080);
 }
 
-.dialog-overlay {
-  @include overlay;
+.dialog-wrapper {
+  @include fullscreen-position;
   display: flex;
   align-items: center;
   justify-content: center;
