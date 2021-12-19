@@ -3,8 +3,9 @@
   "sideEffects": false,
   "version": "0.2.0",
   "description": "vuejs modal dialog",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
+  "main": "dist/dialog.umd.js",
+  "module": "dist/dialog.es.js",
+  "style": "dist/style.css",
   "types": "types/src/index.d.ts",
   "files": [
     "dist",
