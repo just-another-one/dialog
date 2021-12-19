@@ -60,8 +60,10 @@ export function useConfirmableDialog() {
         result,
         parentInstance: instance,
         onClose: () => {
-          destroy();
           resolve(result.value);
+        },
+        onClosed: () => {
+          destroy();
         },
         onConfirm: () => {
           result.value = true;

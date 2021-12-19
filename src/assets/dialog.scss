@@ -27,17 +27,17 @@
 }
 
 .dialog-transition-enter-active {
-  animation: var(--modal-dialog-animation, dialog-overlay-transition 0.3s ease-in-out);
+  animation: var(--dialog-overlay-animation, dialog-overlay-transition 0.3s ease-in-out);
   .dialog-wrapper {
-    animation: var(--dialog-animation, dialog-wrapper-transition 0.3s ease-in-out);
+    animation: var(--dialog-wrapper-animation, dialog-wrapper-transition 0.3s ease-in-out);
   }
 }
 
 .dialog-transition-leave-active {
-  animation: var(--modal-dialog-animation, dialog-overlay-transition 0.3s ease-in-out);
+  animation: var(--dialog-overlay-animation, dialog-overlay-transition 0.3s ease-in-out);
   animation-direction: reverse;
   .dialog-wrapper {
-    animation: var(--dialog-animation, dialog-wrapper-transition 0.3s ease-in-out);
+    animation: var(--dialog-wrapper-animation, dialog-wrapper-transition 0.3s ease-in-out);
     animation-direction: reverse;
   }
 }
