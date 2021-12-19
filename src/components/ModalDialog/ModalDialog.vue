@@ -16,7 +16,10 @@ export default defineComponent({
 });
 </script>
 <template>
-  <teleport :to="appendTo">
+  <teleport
+    :to="appendTo"
+    :disabled="isTelportDiabled"
+  >
     <transition
       name="dialog-transition"
       @after-enter="afterEnter"

@@ -3,6 +3,7 @@
     v-model="isVisible"
     :title="title"
     :close-by-click-outside="false"
+    append-to="body"
     class="dialog-confirmation"
     hide-close-button
     @keydown.enter.prevent="confirm"

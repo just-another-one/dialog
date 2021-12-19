@@ -1,4 +1,4 @@
-import { nextTick, ref, watch, onMounted, ExtractPropTypes, PropType, SetupContext } from 'vue';
+import { computed, nextTick, ref, watch, onMounted, ExtractPropTypes, PropType, SetupContext } from 'vue';
 
 import { useModalKeyHandlers, KeyCode } from '@/compositions/useModalKeyHandlers';
 
@@ -12,8 +12,9 @@ export const dialogProps = {
     default: '',
   },
   appendTo: {
-    type: String,
-    default: 'body',
+    type: [String, Boolean] as PropType<string | false>,
+    default: false,
+    validator: (value: unknown) => value === false || typeof value === 'string',
   },
   hideCloseButton: {
     type: Boolean,
@@ -53,6 +54,7 @@ export type DialogProps = ExtractPropTypes<typeof dialogProps>;
 export const useDialog = (props: DialogProps, { emit }: SetupContext<DialogEmits>) => {
   const dialog = ref<HTMLElement>();
   const isVisible = ref(false);
+  const isTelportDiabled = computed(() => props.appendTo === false);
 
   function afterEnter() {
     emit('opened');
@@ -132,5 +134,6 @@ export const useDialog = (props: DialogProps, { emit }: SetupContext<DialogEmits
     onEscapePressed,
     dialog,
     isVisible,
+    isTelportDiabled,
   };
 };
