@@ -32,6 +32,12 @@ interface InstanceWithInjections extends ComponentInternalInstance {
   provides: Record<string | symbol, unknown>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isInstanceWithInjections(instance: any): instance is InstanceWithInjections {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  return instance?.providers !== undefined;
+}
+
 function assignProviders(parent: InstanceWithInjections) {
   const instance = getCurrentInstance() as InstanceWithInjections;
   instance.provides = parent.provides;
@@ -68,7 +74,9 @@ export default defineComponent({
   setup(_, { attrs, emit }) {
     const isVisible = ref(true);
 
-    assignProviders(attrs.parentInstance as InstanceWithInjections);
+    if (isInstanceWithInjections(attrs.parentInstance)) {
+      assignProviders(attrs.parentInstance);
+    }
 
     function close() {
       isVisible.value = false;

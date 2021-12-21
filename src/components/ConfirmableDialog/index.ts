@@ -1,2 +1,2 @@
-export * from './defineConfirmableDialog';
+export { defineConfirmableDialogPlugin } from './plugin';
 export * from './useConfirmableDialog';

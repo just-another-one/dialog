@@ -1,22 +1,10 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { h, ref, provide } from 'vue';
+import { ref } from 'vue';
 
-import { ModalDialog, setupConfirmableDialog, useConfirmableDialog } from '@/components';
+import { ModalDialog, useConfirmableDialog } from '@/components';
 import NestedDialog from './NestedDialog.vue';
-
-setupConfirmableDialog({
-  actions: ({ cancellable, cancel, confirm }) => {
-    const confirmButton = h('button', { class: 'btn btn-primary', onClick: confirm }, 'Accept');
-    if (cancellable) {
-      const cancelButton = h('button', { class: 'btn btn-cancel', onClick: cancel }, 'Reject');
-      return [cancelButton, confirmButton];
-    }
-
-    return [confirmButton];
-  },
-});
 
 const showDialog = ref(false);
 const { alert, confirm } = useConfirmableDialog();

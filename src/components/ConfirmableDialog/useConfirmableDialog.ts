@@ -1,13 +1,20 @@
 import { getCurrentInstance, h, render as nodeRender, ref, onUnmounted, AppContext } from 'vue';
 
-import { defaultConfirmableDialogProps, ConfirmableDialogProps, ModalDialogProps } from './defineConfirmableDialog';
+import {
+  getDefaultAppContext,
+  DEFAULT_CONFIRMABLE_OPTIONS,
+  ConfirmableDialogOptions,
+  ConfirmableDialogProps,
+  ModalDialogProps,
+} from './plugin';
 import ConfirmableDialog from './ConfirmableDialog.vue';
 
 function normalizeProperties(confirmMessageOrProps: string | ConfirmableDialogProps): ModalDialogProps {
-  const userProps =
-    typeof confirmMessageOrProps === 'string' ? { message: confirmMessageOrProps } : confirmMessageOrProps;
+  if (typeof confirmMessageOrProps === 'object') {
+    return confirmMessageOrProps;
+  }
 
-  return { ...defaultConfirmableDialogProps, ...userProps };
+  return { message: confirmMessageOrProps };
 }
 
 function extractSots(props: ModalDialogProps) {
@@ -50,12 +57,20 @@ export function useConfirmableDialog() {
   const instance = getCurrentInstance()!;
   const { destroy, render } = defineWrapper();
 
-  onUnmounted(destroy);
+  if (instance) {
+    onUnmounted(destroy);
+  }
 
   function create(dialogProps: ModalDialogProps) {
     return new Promise<boolean>((resolve) => {
       const result = ref(false);
+      const appContext = instance?.root?.appContext || getDefaultAppContext();
+      const defaultConfirmableDialogOptions = appContext.provides[
+        DEFAULT_CONFIRMABLE_OPTIONS as symbol
+      ] as ConfirmableDialogOptions;
+
       const props = {
+        ...defaultConfirmableDialogOptions,
         ...dialogProps,
         result,
         parentInstance: instance,
@@ -70,7 +85,7 @@ export function useConfirmableDialog() {
         },
       };
 
-      render(props, instance.root.appContext);
+      render(props, appContext);
     });
   }
 
