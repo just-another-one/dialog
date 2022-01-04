@@ -7,8 +7,9 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    'jest/globals': true,
   },
-  plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'promise', 'unicorn', 'prettier'],
+  plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'promise', 'unicorn', 'prettier', 'jest'],
   extends: [
     'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended',
@@ -24,10 +25,11 @@ module.exports = {
 
     'plugin:prettier-vue/recommended',
     // "prettier",
+    'plugin:jest/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
-    project: path.resolve(__dirname, './tsconfig.json'),
+    project: path.resolve(__dirname, './tsconfig.eslint.json'),
     extraFileExtensions: ['.vue'],
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2021,
@@ -65,6 +67,7 @@ module.exports = {
         vue: 'always',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: ['./docs/**/*', './tests/**/*', './*'] }],
     'unicorn/filename-case': [
       'error',
       {
